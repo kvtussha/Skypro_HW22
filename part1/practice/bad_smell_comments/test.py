@@ -26,10 +26,10 @@ class ClassTestCase(SkyproTestCase):
             '\sf[i]*eld_1_param[:]\s', 
             '\sfield_2_param[:]\s',
             '\sd[:]\s',
-            '\sfl[:]\s',
-            '\scr[:]\s',
-            'points_per_action',
-            'mvmntobjbfld'
+            '\sis_fly[:]\s',
+            '\sis_crawn[:]\s',
+            'speed',
+            'mvmntobjbis_flyd'
         ]
         for variable in unexpected_variables:
             self.assertNotRegex(

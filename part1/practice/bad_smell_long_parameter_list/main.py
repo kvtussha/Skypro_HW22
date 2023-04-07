@@ -11,40 +11,28 @@
 
 
 class Unit:
-    def move(self, field, x_coord, y_coord, direction, is_fly, crawl, speed = 1):
+    def __init__(self, state, speed, field):
+        self.field = field
+        self.state = state
+        self.speed = speed
 
-        if is_fly and crawl:
+    def _get_speed(self):
+        if self.state == 'is_flyy':
+            self.speed *= 1.2
+        elif self.state == 'is_crawnawl':
+            self.speed *= 0.5
+        else:
             raise ValueError('Рожденный ползать летать не должен!')
 
-        if is_fly:
-            speed *= 1.2
-            if direction == 'UP':
-                new_y = y_coord + speed
-                new_x = x_coord
-            elif direction == 'DOWN':
-                new_y = y_coord - speed
-                new_x = x_coord
-            elif direction == 'LEFT':
-                new_y = y_coord
-                new_x = x_coord - speed
-            elif direction == 'RIGTH':
-                new_y = y_coord
-                new_x = x_coord + speed
-        if crawl:
-            speed *= 0.5
-            if direction == 'UP':
-                new_y = y_coord + speed
-                new_x = x_coord
-            elif direction == 'DOWN':
-                new_y = y_coord - speed
-                new_x = x_coord
-            elif direction == 'LEFT':
-                new_y = y_coord
-                new_x = x_coord - speed
-            elif direction == 'RIGTH':
-                new_y = y_coord
-                new_x = x_coord + speed
 
-            field.set_unit(x=new_x, y=new_y, unit=self)
+    def direction(self, x_coord, y_coord, direction,):
+        speed = self._get_speed()
+        if direction == 'UP':
+            self.field.set_unit(x=x_coord, y=y_coord + speed, unit=self)
+        elif direction == 'DOWN':
+            self.field.set_unit(x=x_coord, y=y_coord - speed, unit=self)
+        elif direction == 'LEFT':
+            self.field.set_unit(x=x_coord - speed, y=y_coord, unit=self)
+        elif direction == 'RIGTH':
+            self.field.set_unit(x=x_coord + speed, y=y_coord, unit=self)
 
-#     ...
