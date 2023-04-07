@@ -1,0 +1,60 @@
+Я изучила работу https://github.com/Where456/Homework_21
+Я обнаружила следующие запахи:
+
+- main 6-36
+- слишком длинная функция
+– я бы разделила функцию main на 3 функции:
+    1. Экземпляры классов
+        """
+        store = Store(items={
+            'конфеты': 10,
+            'шоколад': 1,
+            'вишня': 3
+        })
+        shop = Shop({
+            'яблоки': 1,
+            'груша': 5,
+            'виноград': 2
+        })
+        """
+    2. Принты для introduction
+        """
+        print('Для отправки товара из склада в магазин:\nДоставить (кол-во) (товар) из склад в магазин')
+        print('Для отправки товара из магазина в склад:\nДоставить (кол-во) (товар) из магазина в склад')
+        print('Сейчас на складе:')
+        print(store.get_info())
+        print('Сейчас в магазине:')
+        print(shop.get_info())
+        """
+    3. Основная логика программы
+        """
+        user = input('Введите: ').lower()
+        if user == 'зaвершить':
+            print('end')
+            break
+        request = Request(user)
+        if request.check(shop, store):
+            if request.to == 'магазин':
+                shop.add(request.product, int(request.amount))
+                store.remove(request.product, int(request.amount))
+            else:
+                store.add(request.product, int(request.amount))
+                shop.remove(request.product, int(request.amount))
+        """
+
+
+- shop 17-18, 25-26
+- эти строки ничего не делают
+– я бы их просто удалила
+    """
+    else:
+        pass
+    """
+
+- store 15-16, 23-24
+- эти строки ничего не делают
+– я бы их просто удалила
+    """
+    else:
+        pass
+    """
